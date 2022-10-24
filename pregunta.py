@@ -40,7 +40,7 @@ def ingest_data():
     
     for i in limpio1:
         aux = re.search('(^[0-9]+)\s+([0-9]+)\s+([0-9]+),([0-9]) %\s+(.+)$', i)
-        aux2 = aux.group(1)+"*"+aux.group(2)+"*"+aux.group(3)+"."+aux.group(4)+"*"+re.sub('\s{2,}','',aux.group(5))
+        aux2 = aux.group(1)+"*"+aux.group(2)+"*"+aux.group(3)+"."+aux.group(4)+"*"+re.sub('\s{2,}',' ',aux.group(5))
         limpio2.append(aux2)
     
     limpio2 = [i.split("*") for i in limpio2]
