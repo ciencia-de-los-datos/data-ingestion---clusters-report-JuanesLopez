@@ -20,7 +20,7 @@ def ingest_data():
     # archivo = open("C:/Users/jlopezl/OneDrive - Renting Colombia S.A/Archivos/Personal/Especialización/Ciencia de los datos/data-ingestion---clusters-report-JuanesLopez/clusters_report.txt", mode="r")
     archivo = open("clusters_report.txt", mode="r")
     
-    crudo = [line for line in archivo.readlines()]
+    crudo = [re.sub('^\s+$', '\n', line) for line in archivo.readlines()]
     crudo = crudo[4:]
     
     limpio1=[]
@@ -52,4 +52,7 @@ def ingest_data():
     
     datos['principales_palabras_clave'] = [", ".join(i).replace(".","") for i in palabras]
     
+    datos['cluster'] = datos['cluster'].astype('int')
+    datos['cantidad_de_palabras_clave'] = datos['cantidad_de_palabras_clave'].astype('int')
+    datos['porcentaje_de_palabras_clave'] = datos['porcentaje_de_palabras_clave'].astype('float')
     return datos
